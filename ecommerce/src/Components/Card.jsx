@@ -8,10 +8,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router';
 
 export  function MediaCard(props) {
+
+const navigate=useNavigate()
+
   return (
-    <Card sx={{ maxWidth: 305 }} style={{marginTop:"50px"}}>
+    <Card sx={{ maxWidth: 305 }} style={{marginTop:"50px"}} onClick={()=>{navigate(`/fullproduct/${props.title}`)}}>
       
       <img src={props.image} style={{width:"90%",height:"150px",marginLeft:"7%",marginTop:"25px"}} alt="" />
 

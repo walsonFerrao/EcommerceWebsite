@@ -5,30 +5,46 @@ import axios from "axios";
 import { get_product_data } from '../Redux/Products/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { drawerClasses } from '@mui/material';
 
 
-export default function SpacingGrid() {
+export default function Categorizedhome() {
   const [spacing, setSpacing] = React.useState(2);
   const dispatch=useDispatch()
   const data=useSelector((store)=>{return store.productData})
   const isLoading=useSelector((store)=>{return store.productloading})
   
+  var {key}=useParams()
+
+// if(key[key.length-1]=="'")
+// {
+//    key= key.split("")
+//    key.pop()
+//    key=key.join("")
+// }
+
+//   console.log(key)
+
   
-let arr=[]
-
-  data.forEach((e)=>{arr.push(e.breadcrumbs.split(" ").join(" ").split("/").join(" ").split("&").join(" ").split("  ").join(" ").split(" ").join(" "))})
-
-  arr=arr.join(" ").split("  ").join(" ")
-// dispatch(get_product_data())
-console.log(arr)
 
 const getdata= function()
 {
   dispatch(get_product_data())
 }
 
+let sourcearray=  data.filter((e)=>{
+
+let myarr=e.breadcrumbs.split(' ').join(" ").split("/").join(" ").split(" ")
+     
+console.log(myarr)
+
+return (myarr.includes(key))
+})
+
+
+
+console.log(sourcearray,"filteredd")
 
 useEffect(getdata,[])
 
@@ -67,7 +83,7 @@ else return (
     <Grid sx={{ flexGrow: 1 }} container spacing={10}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={spacing} columnGap="2%">
-          {data?.map((e) => (
+          {sourcearray?.map((e) => (
             <MediaCard title={e.title} image={e.images_list} price={e.price}   />
           ))}
         </Grid>

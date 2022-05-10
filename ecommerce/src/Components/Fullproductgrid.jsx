@@ -48,7 +48,7 @@ export default function ResponsiveGrid(props) {
 
 console.log(Object.keys(arr.features[0]))
 
-console.log(arr)
+console.log(arr,"myobjjjj")
 
 
   return (
@@ -60,7 +60,7 @@ console.log(arr)
 <div style={{width:"80%",margin:"auto"}}>
 
 <Typography variant="h4" component="h3">
-  Geox Jr Sandal Strada B Fisherman
+  {arr.title}
 </Typography>
       
 
