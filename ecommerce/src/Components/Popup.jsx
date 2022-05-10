@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router';
+import {get_product_data} from '../Redux/Products/action'
+import { useDispatch } from 'react-redux';
 
 
 let finalarr= [
@@ -41,6 +43,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Categories() {
+const dispatch=useDispatch()
+
+React.useEffect(()=>{
+
+dispatch(get_product_data())
+
+},[])
+
+
 
 const navigate=useNavigate()
 

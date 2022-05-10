@@ -6,6 +6,7 @@ import  SpacingGrid from './Components/ProductSection';
 import {Routes,Route} from 'react-router-dom';
 import Categories from './Components/Popup';
 import Categorizedhome from './Components/CategorizedHome';
+import {Mycarousel} from './Components/Carausel'
 
 function App() {
   return (

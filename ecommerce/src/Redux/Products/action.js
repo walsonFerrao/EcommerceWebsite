@@ -12,9 +12,15 @@ export const PRODUCT_LOADING_FALSE="PRODUCT_LOADING_FALSE"
 export const product_loading=(payload)=>({type:PRODUCT_LOADING_FALSE,payload})
 
 
+export const ASCENDING_PRICE="ASCENDING_PRICE"
+export const ascending_price=(payload)=>({type:ASCENDING_PRICE,payload})
 
 
+export const DESCENDING_PRICE="DESCENDING_PRICE"
+export const  descending_price=(payload)=>({type:DESCENDING_PRICE,payload})
 
+export const ASCENDING_NAME="ASCENDING_NAME"
+export const ascending_name=(payload)=>({type:ASCENDING_NAME,payload})
 
 
 

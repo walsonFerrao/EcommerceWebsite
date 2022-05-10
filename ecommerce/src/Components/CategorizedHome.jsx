@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { drawerClasses } from '@mui/material';
+import { ascending_price,descending_price,ascending_name,add_product_data_to_store ,product_loading} from '../Redux/Products/action';
 
 
 export default function Categorizedhome() {
@@ -17,14 +18,7 @@ export default function Categorizedhome() {
   
   var {key}=useParams()
 
-// if(key[key.length-1]=="'")
-// {
-//    key= key.split("")
-//    key.pop()
-//    key=key.join("")
-// }
 
-//   console.log(key)
 
   
 
@@ -33,21 +27,82 @@ const getdata= function()
   dispatch(get_product_data())
 }
 
-let sourcearray=  data.filter((e)=>{
-
-let myarr=e.breadcrumbs.split(' ').join(" ").split("/").join(" ").split(" ")
-     
-console.log(myarr)
-
-return (myarr.includes(key))
-})
 
 
 
-console.log(sourcearray,"filteredd")
 
-useEffect(getdata,[])
+useEffect(()=>{
+   dispatch(product_loading(false))  
+    let sourcearray=  data.filter((e)=>{
 
+        let myarr=e.breadcrumbs.split(' ').join(" ").split("/").join(" ").split(" ")
+             
+        console.log(myarr)
+        
+        return (myarr.includes(key))
+        })
+
+
+       
+        dispatch(add_product_data_to_store(sourcearray))
+
+} ,[])
+function Sortit(e)
+{
+
+  if(e.target.value=="SA")
+  {
+     data.sort((a,b)=>{
+
+  return  a.price?.replace("£","").split("-")[0] - b.price?.replace("£","").split("-")[0]
+        
+     })
+
+     dispatch(ascending_price(data))  
+
+
+  }
+
+  if(e.target.value=="SD")
+  {
+     data.sort((a,b)=>{
+
+  return  a.price?.replace("£","").split("-")[0] - b.price?.replace("£","").split("-")[0]
+        
+     })
+
+     dispatch(descending_price(data.reverse()))  
+
+
+  }
+  if(e.target.value=="SN")
+  {
+     data.sort((a,b)=>{
+
+  return  a.title.localeCompare(b.title)
+        
+     })
+
+     dispatch(ascending_name(data))  
+
+
+  }
+
+  if(e.target.value=="SND")
+  {
+     data.sort((a,b)=>{
+
+  return  b.title.localeCompare(a.title)
+        
+     })
+
+     dispatch(ascending_name(data))  
+
+
+  }
+
+
+}
 
 
 
@@ -76,19 +131,30 @@ if(isLoading==true)
 
 else return (
 
+<>
+<div style={{width:"100%",marginRight:"25px",marginTop:"5px"}}>
+<select name="" id="" style={{ width: "250px",height:"30px",borderRadius:"5px",fontWeight:"bold",position:"absolute",float:"right" }} onChange={(e)=>{Sortit(e)}}>
+        <option value="" >Sort Accoringly</option>
+          <option value="SA" >SortbyPriceAscending</option>
+          <option value="SD">SortbyPriceDescending</option>
+          <option value="SN">SortByNameAscending</option>
+          <option value="SND">SortByNameDescending</option>
 
-
+        </select>
+</div>
 
 
     <Grid sx={{ flexGrow: 1 }} container spacing={10}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={spacing} columnGap="2%">
-          {sourcearray?.map((e) => (
+          {data?.map((e) => (
             <MediaCard title={e.title} image={e.images_list} price={e.price}   />
           ))}
         </Grid>
       </Grid>
      
     </Grid>
-  );
+    </>
+  )
+  
 }
