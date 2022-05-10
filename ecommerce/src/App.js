@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar} from './Components/Navbar'
-import {MediaCard} from "./Components/Card"
+import {MediaCard} from "./Components/Card";
+import {SimpleContainer} from './Components/Fullproduct'
 import  SpacingGrid from './Components/ProductSection'
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
 
 <Navbar/>
 {/* <MediaCard/> */}
-<SpacingGrid/>
+{/* <SpacingGrid/> */}
+<SimpleContainer/>
+
 </>
 
 
