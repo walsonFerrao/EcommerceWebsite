@@ -6,19 +6,24 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export  function MediaCard(props) {
   return (
-    <Card sx={{ maxWidth: 305 }}>
+    <Card sx={{ maxWidth: 305 }} style={{marginTop:"50px"}}>
       
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-select-2019-family?wid=882&hei=1058&fmt=jpeg&qlt=90&.v=1567022175704" style={{width:"90%",height:"350px",marginLeft:"7%"}} alt="" />
+      <img src={props.image} style={{width:"90%",height:"150px",marginLeft:"7%",marginTop:"25px"}} alt="" />
 
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          I phone 5
+        <Typography gutterBottom variant="h6" sx={{ fontWeight: "bold" }} component="div">
+          {props.title}
+        </Typography>
+        
+      </CardContent>
+      <CardContent>
+      <Typography gutterBottom variant="h6" component="div">
+          {props.price}
         </Typography>
       </CardContent>
       <CardActions>
@@ -28,5 +33,9 @@ export  function MediaCard(props) {
     </Card>
   );
 }
+
+
+
+
 
 
