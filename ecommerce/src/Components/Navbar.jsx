@@ -101,6 +101,10 @@ export const   Navbar=() =>{
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+
+
     </Menu>
   );
 
@@ -153,6 +157,12 @@ export const   Navbar=() =>{
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+
+
+      
+
+
+
     </Menu>
   );
 

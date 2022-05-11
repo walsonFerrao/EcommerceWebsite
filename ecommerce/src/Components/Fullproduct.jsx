@@ -9,6 +9,12 @@ import axios from 'axios';
 import { margin } from '@mui/system';
 import ResponsiveGrid from './Fullproductgrid'
 import { useParams } from 'react-router';
+import styled from 'styled-components';
+
+
+
+
+
 
 
 
@@ -51,13 +57,18 @@ if(!data.title)
 }
 else
   return (
+    <>
+    <div style={{display:"flex",justifyContent:"flex-end",marginTop:"25px",marginRight:"2%",gap:"20px"}} >
+      <button style={{borderRadius:'2px'}}>ADD TO CART</button>
+      <button  style={{borderRadius:'2px'}}>BUTTON</button>
+    </div>
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="80%">
-        <Box sx={{ bgcolor: 'white', height: '80vh',marginTop:"80px",paddingTop:"25px",paddingBottom:'25px' }} >
+        <Box sx={{ bgcolor: 'white', height: '80vh',marginTop:"40px",paddingTop:"25px",paddingBottom:'25px' }} >
 <div style={{width:"50%",backgroundColor:"white",height:"80%",margin:"auto"}}>
 <Carousel>
-{data?.images_list?.map((e,i)=><img  src={e} key={i} style={{height:"350px",width:"40%",marginLeft:"25%",objectFit:"contain"}}/>)}
+{data?.images_list?.map((e,i)=><img  src={e} key={i} style={{height:"350px",width:"40%",marginLeft:"25%",objectFit:"contain",}} alt=""/>)}
 </Carousel>
 </div>
        
@@ -76,6 +87,7 @@ else
 
       </Container>
     </React.Fragment>
+    </>
   );
 }
 

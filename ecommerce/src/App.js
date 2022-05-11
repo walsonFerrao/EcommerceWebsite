@@ -7,6 +7,8 @@ import {Routes,Route} from 'react-router-dom';
 import Categories from './Components/Popup';
 import Categorizedhome from './Components/CategorizedHome';
 import {Mycarousel} from './Components/Carausel'
+import {Login} from './Components/Login'
+import {Register} from './Components/Register'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
 <Route path='/fullproduct/:title' element={<SimpleContainer/>}/>
 <Route path='/categories' element={<Categories/>}/>
 <Route path='/categories/:key' element={<Categorizedhome/>}/>
+<Route path='/register' element={<Register/>}/> 
+<Route path='/login' element={<Login/>}/> 
 
 
 
