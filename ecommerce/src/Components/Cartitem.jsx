@@ -53,6 +53,13 @@ export const  Mycart =()=>  {
         
       </Stack>
     </Box>
+
+<div style={{width:"250px",margin:"auto"}}>
+<button style={{width:"250px",height:"30px",marginTop:"25px",borderRadius:"5px"}}>CHECK OUT</button>
+
+</div>
+
     </div>
-     );
+     ); 
+
 }
