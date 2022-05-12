@@ -1,4 +1,4 @@
-import {get_user,add_user_to_reducer,GET_USER,ADD_USER_TO_REDUCER} from './action/';
+import {get_user,add_user_to_reducer,ADD_USER_TO_REDUCER} from '../User/action';
 
 
 const initstate={
@@ -14,7 +14,7 @@ export const userreducer=(store=initstate,action)=>{
 
 
 switch (action.type) {
-    case "GET_USER":
+    case ADD_USER_TO_REDUCER:
         return {...store,userdata:{...action.payload}}
        
 
