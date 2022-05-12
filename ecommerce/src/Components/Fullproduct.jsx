@@ -8,7 +8,7 @@ import { Paper, Button,Typography } from '@mui/material'
 import axios from 'axios';
 import { margin } from '@mui/system';
 import ResponsiveGrid from './Fullproductgrid'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
 
 
@@ -22,12 +22,16 @@ import styled from 'styled-components';
 
 export  function SimpleContainer() {
 const [data,setdata]=React.useState({})
+const [userdata,setuserdata]=React.useState({})
+const [mydata,setmydata]=React.useState(JSON.parse(localStorage.getItem("ecommerceuserdetails")))
+const navigate=useNavigate()
 
-
+ 
+console.log(userdata,'mydta')
 
 const {title}=useParams()
 
-console.log(title)
+
 
 
 React.useEffect(()=>{
@@ -35,11 +39,36 @@ React.useEffect(()=>{
     axios.get(`http://localhost:8000/products?title=${title}`)
     .then((res)=>{console.log(res,"ress");setdata({...res.data[0]})})
     .catch((err)=>{console.log(err)})
-    console.log(data)
+
+
+    getuserdata()
+
 
 
 },[])
-console.log(data,"data")
+
+
+
+function addtocart()
+{
+axios.put(`http://localhost:1080/users/cartitem/${mydata._id}`,data)
+.then((res)=>{console.log(res.data,"my cart put data");getuserdata()})
+.catch((err)=>{console.log(err)})
+}
+
+
+
+function getuserdata()
+{
+
+  axios.get(`http://localhost:1080/users/${mydata._id}`)
+  .then((res)=>{setuserdata({...res.data});console.log(res,"userdatainside ") })
+  .catch((err)=>{console.log(err)})
+  
+
+}
+
+
 
 // axios.get("http://localhost:8000/products/1")
 // .then((res)=>{setdata({...res})})
@@ -59,8 +88,9 @@ else
   return (
     <>
     <div style={{display:"flex",justifyContent:"flex-end",marginTop:"25px",marginRight:"2%",gap:"20px"}} >
-      <button style={{borderRadius:'2px'}}>ADD TO CART</button>
-      <button  style={{borderRadius:'2px'}}>BUTTON</button>
+      <div><b>CART-ITEMS</b> <b>{userdata?.cart?.length}</b></div>
+      <button style={{borderRadius:'2px'}} onClick={addtocart}>ADD TO CART</button>
+      <button  style={{borderRadius:'2px'}} onClick={()=>{navigate("/cart")}}>GO-TO-CART</button>
     </div>
     <React.Fragment>
       <CssBaseline />

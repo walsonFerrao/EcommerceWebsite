@@ -16,3 +16,35 @@ console.log(Object.keys(obj))
 
 
 // console.log(obj)
+
+let finalarr= [
+    'Shoes',      "Boys'",     'Sandals',
+    "Women's",    'Fashion',   'Athletic',
+    'Trainers',   'Sports',    'Outdoor',
+    'Running',    'Trail',     "Men's",
+    'Loafers',    'Moccasins', 'Court',
+    'Boots',      'Road',      "Girls'",
+    'Dance',      'Trekking',  'Hiking',
+    'Footwear',   'Slippers',  'Lace-ups',
+    'Water',      'Flat',      'Baby',
+    'Boys',       'First',     'Walking',
+    'Mary',       'Janes',     'Equestrian',
+    'Jodhpur',    'Paddock',   'Nordic',
+    'Ballet',     'Flats',     'Football',
+    'Espadrille', 'Technical', 'Skateboarding',
+    'Cross',      'Slides',    'Tennis',
+    'Cycling',    'Work',      'Utility',
+    'Beach',      'Flip',      'Flops',
+    'Pool',       'Track',     'Field'
+  ]  
+
+
+
+
+
+  let user:[{name:"walson",
+email:"walson@gmail.com"
+password:"walson@123",
+cart:[],
+
+}   ]
