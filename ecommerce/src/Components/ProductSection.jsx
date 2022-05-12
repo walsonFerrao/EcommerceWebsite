@@ -14,7 +14,7 @@ import { ascending_price,descending_price,ascending_name } from '../Redux/Produc
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
   const dispatch=useDispatch()
-  const data=useSelector((store)=>{return store.productData})
+  const data=useSelector((store)=>{return store.productreducer.productData})
   const isLoading=useSelector((store)=>{return store.productloading})
   const [checkedd,setchecked]=React.useState({
      "0to1":false,
@@ -123,7 +123,7 @@ dispatch(ascending_price(arr))
 
 
 
-console.log(data)
+
 
   const handleChange = (event) => {
     setSpacing(Number(event.target.value));
@@ -234,6 +234,7 @@ else return (
      
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={spacing} columnGap="2%">
+          
           {data?.map((e) => (
             <MediaCard title={e.title} image={e.images_list} price={e.price}   />
           ))}

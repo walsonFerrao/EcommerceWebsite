@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const  Mycart =()=>  {
     const userdata=useSelector((store)=>store.userreducer.userdata)
-    // userreducer
+ 
 
     const dispatch=useDispatch()
   console.log(userdata)
@@ -30,13 +30,13 @@ export const  Mycart =()=>  {
         dispatch(get_user())
 
 
-    })
+    },[])
 
 
     function deletecartitem(i)
     {
 
-    axios.delete(`http://localhost:1080/users/${userdata._id}&index=${i}`)
+    axios.delete(`http://localhost:1080/users/cartitem/${userdata._id}?index=${i}`)
     .then((res)=>{dispatch(get_user())})
     .catch((err)=>{console.log(err)})
 
