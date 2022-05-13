@@ -10,6 +10,7 @@ import {Mycarousel} from './Components/Carausel'
 import {Login} from './Components/Login'
 import {Register} from './Components/Register'
 import {Mycart} from './Components/Cartitem'
+import StripeContainer from './Components/Stripecomponent'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 <Route path='/register' element={<Register/>}/> 
 <Route path='/login' element={<Login/>}/> 
 <Route path='/cart' element={<Mycart/>}/> 
+<Route path='/payment/:amount' element={<StripeContainer/>}/> 
 
 
 
