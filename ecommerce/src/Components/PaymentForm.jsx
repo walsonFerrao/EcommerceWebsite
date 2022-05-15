@@ -48,6 +48,19 @@ export default function PaymentForm() {
             if(response.data.success) {
                 console.log("Successful payment")
                 setSuccess(true)
+
+                function defaultarray()
+                {
+                  
+                  axios.post(`http://localhost:1080/users/reset/${JSON.parse(localStorage.getItem("ecommerceuserdetails"))._id}`)
+                  .then((res)=>{console.log(res.data)})
+                  .catch((err)=>{console.log(err)})
+                
+                }
+                 
+
+                defaultarray()
+
             }
 
         } catch (error) {
@@ -90,7 +103,7 @@ return(
 
 
 
-<div style={{width:"100%",padding:"20px",backgroundColor:"white",margin:"auto",textAlign:"center",border:"5px",fontFamily:'cursive'}}>
+<div style={{width:"95%",padding:"20px",marginRight:"80px",backgroundColor:"grey",margin:"auto",textAlign:"center",border:"5px",fontFamily:'cursive'}}>
 
 <h4>Thank You For Purhasing the item More details will be sent through email.</h4>
 <img src="https://insights.ehotelier.com/wp-content/uploads/sites/6/2018/10/Thank-you-response.jpg" alt="" />

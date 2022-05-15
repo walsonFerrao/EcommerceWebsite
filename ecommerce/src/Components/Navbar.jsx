@@ -82,6 +82,12 @@ export const   Navbar=() =>{
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+function taketologinpage()
+{
+navigate("/login")
+}
+
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -101,7 +107,7 @@ export const   Navbar=() =>{
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+      <MenuItem onClick={()=>{handleMenuClose() ;taketologinpage()}}  >Login</MenuItem>
       <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
 
 

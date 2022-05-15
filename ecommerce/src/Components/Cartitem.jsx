@@ -30,35 +30,31 @@ export const  Mycart =()=>  {
 
 
         dispatch(get_user())
-        findsum()
-
-
       
-
-
-
-
-    
+          findsum()
+       
         
+
     },[])
 
 
-    
+    console.log(userdata,"my userdata debug")
 
 
 function findsum()
 {
-  let sum=0
-     
-  userdata?.cart?.forEach((e)=>{sum=sum+Number(e.price.split('-')[0].replace("£",""))})
-  setsum(sum)
+  console.log(userdata._id,"i am userdata")
+  axios.get(`http://localhost:1080/users/sum/${JSON.parse(localStorage.getItem("ecommerceuserdetails"))._id}`)
+  .then((res)=>{console.log(res.data.sum);setsum(res.data.sum)})
+  .catch((err)=>{console.log(err)})
+
 }
 
 
     function takemetopayment()
     {
-     
-      // navigate("/payment")
+      findsum()
+      navigate(`/payment/${sum}`)
     }
 
 
@@ -66,7 +62,8 @@ function findsum()
     {
 
     axios.delete(`http://localhost:1080/users/cartitem/${userdata._id}?index=${i}`)
-    .then((res)=>{dispatch(get_user())})
+    .then((res)=>{dispatch(get_user());  findsum()
+    })
     .catch((err)=>{console.log(err)})
 
 
@@ -76,7 +73,7 @@ function findsum()
   return (
 
      <div style={{width:"50%",margin:"auto",marginTop:"35px"}}>
-       <h1>total Sum is {sum}</h1>
+       <h1>total Sum is £ {sum}</h1>
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
        {userdata?.cart?.map((e,i)=><Item><div>{e.title}</div><button onClick={()=>{deletecartitem(i); findsum()}}>delete</button></Item>)}
