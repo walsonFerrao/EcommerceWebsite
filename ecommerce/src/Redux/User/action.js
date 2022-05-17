@@ -17,6 +17,7 @@ const add_user_to_reducer=(payload)=>({type:ADD_USER_TO_REDUCER,payload})
 
 export const get_user=()=>(dispatch)=>{
 
+
 let mydata=JSON.parse(localStorage.getItem("ecommerceuserdetails"))
 axios.get(`http://localhost:1080/users/${mydata._id}`)
 .then((res)=>{console.log(res);dispatch(add_user_to_reducer(res.data))})

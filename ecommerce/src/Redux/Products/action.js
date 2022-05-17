@@ -24,10 +24,13 @@ export const ascending_name=(payload)=>({type:ASCENDING_NAME,payload})
 
 
 
-export const get_product_data=()=>(dispatch)=>{
+export const get_product_data=(checked,sort,page)=>(dispatch)=>{
+//  "0to1":false,
+// "1-2":false
 
+     console.log(checked,sort,page)
 
-    axios.get("http://localhost:8000/products")
+    axios.get(`http://localhost:1080/products?checked=${JSON.stringify(checked)}&sort=${sort}&page=${page}`)
     .then(({data})=>{console.log(data,"i am actio");dispatch(add_product_data_to_store(data));dispatch(product_loading(false))
     })
     .catch((err)=>{console.log(err)})

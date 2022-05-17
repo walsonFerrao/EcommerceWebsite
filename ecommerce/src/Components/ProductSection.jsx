@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router';
 import { drawerClasses } from '@mui/material';
 import { ascending_price,descending_price,ascending_name } from '../Redux/Products/action';
 
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 
 
 export default function SpacingGrid() {
@@ -21,9 +24,13 @@ export default function SpacingGrid() {
      "1-2":false
 
   })
+  const [sort,setsort] = React.useState('nothing')
   
-  
-  
+  const [page, setPage] = React.useState(1);
+  const handlepageChange = (event, value) => {
+    setPage(value);
+  };
+
 // let arr=[]
 
 //   data.forEach((e)=>{arr.push(e.breadcrumbs.split(" ").join(" ").split("/").join(" ").split("&").join(" ").split("  ").join(" ").split(" ").join(" "))})
@@ -34,13 +41,11 @@ export default function SpacingGrid() {
 
 const getdata= function()
 {
-
-  
-  dispatch(get_product_data())
+  dispatch(get_product_data(checkedd,sort,page))
 }
 
 
-useEffect(getdata,[])
+useEffect(getdata,[sort,page])
 
 
 function Checkbox(e)
@@ -95,11 +100,7 @@ if(checkedd['1to2']==true)
 else{
 
   let arr=data.filter((e)=>{
-     
     return (e.price?.split("-")[0].replace("£","")<200&&e.price?.split("-")[0].replace("£","")>100)
-    
-
-
   })
   setchecked({...checkedd,'1to2':true})
 
@@ -139,52 +140,30 @@ function Sortit(e)
 
   if(e.target.value=="SA")
   {
-     data.sort((a,b)=>{
-
-  return  a.price?.replace("£","").split("-")[0] - b.price?.replace("£","").split("-")[0]
-        
-     })
-
-     dispatch(ascending_price(data))  
-
+  
+setsort('SA')
 
   }
 
   if(e.target.value=="SD")
   {
-     data.sort((a,b)=>{
-
-  return  a.price?.replace("£","").split("-")[0] - b.price?.replace("£","").split("-")[0]
-        
-     })
-
-     dispatch(descending_price(data.reverse()))  
+  
+  setsort('SD')
 
 
   }
   if(e.target.value=="SN")
   {
-     data.sort((a,b)=>{
+    
 
-  return  a.title.localeCompare(b.title)
-        
-     })
-
-     dispatch(ascending_name(data))  
-
+  setsort('SN')
 
   }
 
   if(e.target.value=="SND")
   {
-     data.sort((a,b)=>{
-
-  return  b.title.localeCompare(a.title)
-        
-     })
-
-     dispatch(ascending_name(data))  
-
+   
+  setsort('SND')
 
   }
 
@@ -193,7 +172,7 @@ function Sortit(e)
 
 
 
-// console.log(data,"sorteddata")
+console.log(page,"my page")
 
 
 if(isLoading==true)
@@ -242,6 +221,12 @@ else return (
       </Grid>
      
     </Grid>
+
+<div style={{width:"25%",margin:'auto',marginTop:"50px",marginBottom:"50px"}}>
+<Pagination count={60} variant="outlined" color="primary"  page={page} onChange={handlepageChange}   />
+
+</div>
+
     </>
   );
   
